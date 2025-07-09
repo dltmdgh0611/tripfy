@@ -18,7 +18,12 @@ app = FastAPI(
 # CORS 설정
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],  # 프론트엔드 개발 서버
+    allow_origins=[
+        "http://localhost:5173",  # 프론트엔드 개발 서버
+        "http://localhost:3000",  # 프론트엔드 개발 서버
+        "https://tripfy-mu.vercel.app",  # Vercel 배포 도메인
+        "https://*.vercel.app",  # Vercel 프리뷰 도메인
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
