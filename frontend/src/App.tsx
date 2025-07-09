@@ -61,14 +61,11 @@ function App() {
           {status === 'landing' && (
             <div className="d-flex flex-column align-items-center justify-content-center text-center" style={{ minHeight: '50vh' }}>
               <div className="mb-5">
-                <h1 className="display-4 fw-bold mb-3" style={{ color: '#2D2D2D' }}>
+                <h3 className="display-4 fw-bold mb-3" style={{ color: '#2D2D2D' }}>
                   여행 계획 AI 에이전트
                 </h1>
-                <h2 className="h3 text-secondary mb-4">
-                  Tripfy
-                </h2>
-                <p className="fs-5 text-muted mb-5" style={{ maxWidth: '600px' }}>
-                  AI가 당신의 선호도와 예산에 맞는 완벽한 여행 계획을 만들어드립니다
+                <p className="fs-6 text-muted mb-5">
+                  P들을 위한 여행 계획 AI 서비스
                 </p>
               </div>
               <button
