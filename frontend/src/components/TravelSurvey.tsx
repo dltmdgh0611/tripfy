@@ -4,24 +4,6 @@ import 'rc-slider/assets/index.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { BsPerson, BsPeople, BsBackpack, BsGem, BsBuilding, BsTree, BsUmbrella, BsBank, BsHouse, BsHouseDoor, BsStar, BsCamera, BsShop, BsTriangle } from 'react-icons/bs'
-import axios from 'axios'
-
-interface SurveyData {
-  budget: string
-  duration: string
-  travel_style: string
-  preferred_activities: string[]
-  destination_type: string
-  accommodation_preference: string
-  additional_notes: string
-}
-
-interface TravelRecommendation {
-  destination: string
-  itinerary: string
-  budget_breakdown: string
-  tips: string
-}
 
 const questions = [
   {
@@ -139,8 +121,10 @@ const TravelSurvey = ({ onComplete }: { onComplete?: (data: any) => void }) => {
   }
 
   // 예산 슬라이더 핸들러
-  const handleBudgetChange = (vals: number[]) => {
-    setSurvey((prev: any) => ({ ...prev, budget: vals }))
+  const handleBudgetChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      setSurvey((prev: any) => ({ ...prev, budget: value }))
+    }
   }
 
   // 날짜 선택 핸들러

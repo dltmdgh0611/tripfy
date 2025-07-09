@@ -12,7 +12,8 @@ function App() {
   const handleSurveyComplete = async (data: any) => {
     setStatus('loading');
     try {
-      const res = await fetch('http://localhost:8000/generate-prompt', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/generate-prompt`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -27,13 +28,7 @@ function App() {
     }
   };
 
-  // 예시 결과 데이터 (실제론 AI 응답 사용)
-  const exampleResult = {
-    destination: '---',
-    itinerary: `7:50 11\n9:00 22\n10:45 33\n11:15 44\n13:00 55\n14:00 66\n15:10 77\n경유지 99\n18:40 00`,
-    budget_breakdown: '1',
-    tips: '2.'
-  }
+
 
   return (
     <div className="main-bg d-flex flex-column" style={{ background: '#FFF8F2' }}>
