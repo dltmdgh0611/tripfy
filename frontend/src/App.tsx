@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 function App() {
-  const [status, setStatus] = useState<'survey' | 'loading' | 'result' | 'api'>('survey')
+  const [status, setStatus] = useState<'landing' | 'survey' | 'loading' | 'result' | 'api'>('landing')
   const [surveyData, setSurveyData] = useState<any>(null)
 
   const handleSurveyComplete = async (data: any) => {
@@ -34,7 +34,13 @@ function App() {
   return (
     <div className="main-bg d-flex flex-column" style={{ background: '#FFF8F2' }}>
       <header className="py-4 text-center">
-        <img src="/tripfy.png" alt="Tripfy" height={44} style={{ maxHeight: 44 }} />
+        <img 
+          src="/tripfy.png" 
+          alt="Tripfy" 
+          height={44} 
+          style={{ maxHeight: 44, cursor: 'pointer' }} 
+          onClick={() => setStatus('landing')}
+        />
       </header>
       <main
         className="flex-grow-1 d-flex align-items-center justify-content-center"
@@ -52,6 +58,35 @@ function App() {
             justifyContent: 'center',
           }}
         >
+          {status === 'landing' && (
+            <div className="d-flex flex-column align-items-center justify-content-center text-center" style={{ minHeight: '50vh' }}>
+              <div className="mb-5">
+                <h1 className="display-4 fw-bold mb-3" style={{ color: '#2D2D2D' }}>
+                  여행 계획 AI 에이전트
+                </h1>
+                <h2 className="h3 text-secondary mb-4">
+                  Tripfy
+                </h2>
+                <p className="fs-5 text-muted mb-5" style={{ maxWidth: '600px' }}>
+                  AI가 당신의 선호도와 예산에 맞는 완벽한 여행 계획을 만들어드립니다
+                </p>
+              </div>
+              <button
+                className="btn btn-primary btn-lg px-5 py-3 fw-bold"
+                onClick={() => setStatus('survey')}
+                style={{ 
+                  fontSize: '1.2rem',
+                  background: 'linear-gradient(135deg, #FF7E6D 0%, #FF6B6B 100%)',
+                  border: 'none',
+                  borderRadius: '50px',
+                  boxShadow: '0 8px 25px rgba(255, 126, 109, 0.3)'
+                }}
+              >
+                <i className="bi bi-plus-circle me-2"></i>
+                새 계획 생성
+              </button>
+            </div>
+          )}
           {status === 'survey' && <TravelSurvey onComplete={handleSurveyComplete} />}
           {status === 'loading' && (
             <div className="d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '40vh' }}>
@@ -67,6 +102,13 @@ function App() {
         </div>
       </main>
       <footer className="text-center mb-4" style={{ color: '#bbb', fontSize: '0.95rem', opacity: 0.7 }}>
+        <span
+          style={{ cursor: 'pointer', textDecoration: status === 'landing' ? 'underline' : 'none' }}
+          onClick={() => setStatus('landing')}
+        >
+          홈
+        </span>
+        &nbsp;|&nbsp;
         <span
           style={{ cursor: 'pointer', textDecoration: status === 'survey' ? 'underline' : 'none' }}
           onClick={() => setStatus('survey')}
