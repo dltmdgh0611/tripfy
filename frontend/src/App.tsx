@@ -32,8 +32,8 @@ function App() {
 
 
   return (
-    <div className="main-bg d-flex flex-column" style={{ background: '#FFF8F2' }}>
-      <header className="py-4 text-center">
+    <div className="main-bg d-flex flex-column" style={{ background: '#FFF8F2', minHeight: '100vh' }}>
+      <header className="py-3 py-md-4 text-center">
         <img 
           src="/tripfy.png" 
           alt="Tripfy" 
@@ -43,11 +43,11 @@ function App() {
         />
       </header>
       <main
-        className="flex-grow-1 d-flex align-items-center justify-content-center"
-        style={{ minHeight: '80vh' }}
+        className="flex-grow-1 d-flex align-items-center justify-content-center px-2 px-md-4"
+        style={{ minHeight: 'calc(100vh - 200px)' }}
       >
         <div
-          className="survey-card p-5 shadow rounded-4 w-100"
+          className="survey-card shadow rounded-4 w-100"
           style={{
             maxWidth: 900,
             minHeight: '60vh',
@@ -56,23 +56,24 @@ function App() {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
+            padding: 'clamp(1rem, 4vw, 3rem)',
           }}
         >
           {status === 'landing' && (
-            <div className="d-flex flex-column align-items-center justify-content-center text-center" style={{ minHeight: '50vh' }}>
-              <div className="mb-5">
-                <h3 className="display-4 fw-bold mb-3" style={{ color: '#2D2D2D' }}>
+            <div className="d-flex flex-column align-items-center justify-content-center text-center" style={{ minHeight: '40vh' }}>
+              <div className="mb-4 mb-md-5">
+                <h3 className="display-6 display-md-4 fw-bold mb-3" style={{ color: '#2D2D2D' }}>
                   여행 계획 AI 에이전트
-                </h1>
-                <p className="fs-6 text-muted mb-5">
+                </h3>
+                <p className="fs-6 text-muted mb-4 mb-md-5">
                   P들을 위한 여행 계획 AI 서비스
                 </p>
               </div>
               <button
-                className="btn btn-primary btn-lg px-5 py-3 fw-bold"
+                className="btn btn-primary px-4 px-md-5 py-2 py-md-3 fw-bold"
                 onClick={() => setStatus('survey')}
                 style={{ 
-                  fontSize: '1.2rem',
+                  fontSize: 'clamp(1rem, 4vw, 1.2rem)',
                   background: 'linear-gradient(135deg, #FF7E6D 0%, #FF6B6B 100%)',
                   border: 'none',
                   borderRadius: '50px',
@@ -87,9 +88,9 @@ function App() {
           {status === 'survey' && <TravelSurvey onComplete={handleSurveyComplete} />}
           {status === 'loading' && (
             <div className="d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '40vh' }}>
-              <div className="spinner-border text-primary mb-4" style={{ width: 64, height: 64 }} role="status"></div>
-              <div className="fs-4 fw-bold" style={{ color: '#2D2D2D' }}>AI가 여행 플랜을 분석 중입니다...</div>
-              <div className="text-secondary mt-2">잠시만 기다려주세요</div>
+              <div className="spinner-border text-primary mb-4" style={{ width: 'clamp(48px, 12vw, 64px)', height: 'clamp(48px, 12vw, 64px)' }} role="status"></div>
+              <div className="fs-5 fs-md-4 fw-bold text-center" style={{ color: '#2D2D2D' }}>AI가 여행 플랜을 분석 중입니다...</div>
+              <div className="text-secondary mt-2 text-center">잠시만 기다려주세요</div>
             </div>
           )}
           {status === 'result' && surveyData && (
@@ -98,7 +99,7 @@ function App() {
           {status === 'api' && <ApiTest />}
         </div>
       </main>
-      <footer className="text-center mb-4" style={{ color: '#bbb', fontSize: '0.95rem', opacity: 0.7 }}>
+      <footer className="text-center mb-3 mb-md-4 px-2" style={{ color: '#bbb', fontSize: 'clamp(0.8rem, 3vw, 0.95rem)', opacity: 0.7 }}>
         <span
           style={{ cursor: 'pointer', textDecoration: status === 'landing' ? 'underline' : 'none' }}
           onClick={() => setStatus('landing')}

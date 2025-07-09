@@ -168,9 +168,9 @@ const TravelSurvey = ({ onComplete }: { onComplete?: (data: any) => void }) => {
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center h-100" style={{ minHeight: '60vh' }}>
-      <div className="w-75 mx-auto" style={{ maxWidth: 480 }}>
+      <div className="w-100 w-md-75 mx-auto" style={{ maxWidth: 480 }}>
         <div className="mb-4">
-          <div className="fw-bold fs-4 mb-2" style={{ color: '#2D2D2D' }}>
+          <div className="fw-bold fs-5 fs-md-4 mb-2 text-center" style={{ color: '#2D2D2D' }}>
             {current.label}
           </div>
           <div className="progress mb-3" style={{ height: 6, background: '#FDFDFD' }}>
@@ -222,16 +222,16 @@ const TravelSurvey = ({ onComplete }: { onComplete?: (data: any) => void }) => {
             </div>
           )}
           {current.type === 'card-radio' && (
-            <div className="row g-3 mb-4">
+            <div className="row g-2 g-md-3 mb-4">
               {current.options?.map((opt: any) => (
                 <div className="col-6" key={opt.value}>
                   <div
-                    className={`card text-center p-3 shadow-sm ${survey[current.name] === opt.value ? 'border-primary' : ''}`}
+                    className={`card text-center p-2 p-md-3 shadow-sm ${survey[current.name] === opt.value ? 'border-primary' : ''}`}
                     style={{ cursor: 'pointer', borderWidth: 2 }}
                     onClick={() => handleCardRadio(current.name, opt.value)}
                   >
                     <div className="mb-2">{opt.icon}</div>
-                    <div className="fw-bold" style={{ color: survey[current.name] === opt.value ? '#3A8DFF' : '#2D2D2D' }}>{opt.value}</div>
+                    <div className="fw-bold fs-6 fs-md-5" style={{ color: survey[current.name] === opt.value ? '#3A8DFF' : '#2D2D2D' }}>{opt.value}</div>
                   </div>
                 </div>
               ))}
@@ -334,9 +334,9 @@ const TravelSurvey = ({ onComplete }: { onComplete?: (data: any) => void }) => {
           )}
           <button
             type="submit"
-            className="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center"
+            className="btn btn-primary w-100 d-flex align-items-center justify-content-center py-2 py-md-3"
             disabled={submitting}
-            style={{ fontWeight: 600 }}
+            style={{ fontWeight: 600, fontSize: 'clamp(1rem, 4vw, 1.1rem)' }}
           >
             {step < total - 1 ? (
               <>
