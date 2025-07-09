@@ -13,6 +13,7 @@ function App() {
     setStatus('loading');
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      console.log('API URL:', apiUrl); // 디버깅용
       const res = await fetch(`${apiUrl}/generate-prompt`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -22,7 +23,7 @@ function App() {
       setSurveyData(result);
       setStatus('result');
     } catch (e) {
-      // 에러 처리
+      console.error('API Error:', e); // 디버깅용
       setStatus('survey');
       alert('AI 추천 생성에 실패했습니다.');
     }
